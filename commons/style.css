@@ -1,16 +1,14 @@
 @custom-media --motionOK (prefers-reduced-motion: no-preference);
-
-
 @import "https://unpkg.com/open-props/easings.min.css";
 
 
 
-body{
+body[data-theme="light"]{
   background-image: url(../assets/backgrounds/seamless-space-background-with-planets-stars-asteroids-meteors-undiscovered-deep-cosmos-fantastic-breathtaking-textile-fabric-children-endless-tiling-pattern-vector-illustration_570429-23536.webp);
   background-size: auto;
 }
 
-.dark-html{
+body[data-theme="dark"]{
   background-image: url(../assets/backgrounds/ImpartialSecondhandHeifer-size_restricted.gif);
 }
 
@@ -40,9 +38,21 @@ body{
   color:aliceblue
 }
 
+.navtextlast {
+  font-family: 'Livvic', sans-serif;
+  font-size: 17px;
+  padding: 20px;
+  color:aliceblue;
+
+  position: absolute;
+  right: 56px;
+}
+
 .theme-toggle {
   --size: 2rem;
   
+  position: absolute;
+  right: 30px;
   
   border: none;
   padding: 0;
@@ -65,96 +75,4 @@ svg {
   inline-size: 100%;
   block-size: 100%;
   stroke-linecap: round;
-}
-
-.sun-and-moon {
-  & > :is(.moon, .sun, .sun-beams) {
-    transform-origin: center center;
-  }
-
-  & > :is(.moon, .sun) {
-    fill: var(--icon-fill);
-
-    @nest.theme-toggle:is(:hover, :focus-visible) > & {
-      fill: var(--icon-fill-hover);
-    }
-  }
-
-  & > .sun-beams {
-    stroke: var(--icon-fill);
-    stroke-width: 2px;
-
-    @nest.theme-toggle:is(:hover, :focus-visible) & {
-      stroke: var(--icon-fill-hover);
-    }
-  }
-}
-.sun-and-moon {
-  @nest [data-theme="dark"] & {
-    & > .sun {
-      transform: scale(1.75);
-    }
-
-    & > .sun-beams {
-      opacity: 0;
-    }
-
-    & > .moon > circle {
-      transform: translateX(-7px);
-
-      @supports (cx: 1) {
-        transform: translateX(0);
-        cx: 17;
-      }
-    }
-  }
-}
-
-​​.sun-and-moon {
-  @media (--motionOK) {
-    & > .sun {
-      transition: transform .5s var(--ease-elastic-3);
-    }
-
-    & > .sun-beams {
-      transition: 
-        transform .5s var(--ease-elastic-4),
-        opacity .5s var(--ease-3)
-      ;
-    }
-
-    @nest [data-theme="dark"] & {
-      & > .sun {
-        transform: scale(1.75);
-        transition-timing-function: var(--ease-3);
-        transition-duration: .25s;
-      }
-
-      & > .sun-beams {
-        transform: rotateZ(-25deg);
-        transition-duration: .15s;
-      }
-    }
-  }
-}
-​​.sun-and-moon {
-  @media (--motionOK) {
-    & .moon > circle {
-      transform: translateX(-7px);
-      transition: transform .25s var(--ease-out-5);
-
-      @supports (cx: 1) {
-        transform: translateX(0);
-        cx: 17;
-        transition: cx .25s var(--ease-out-5);
-      }
-    }
-
-    @nest [data-theme="dark"] & {
-      & > .moon > circle {
-        transition-delay: .25s;
-        transition-duration: .5s;
-      }
-    }
-  }
 }
